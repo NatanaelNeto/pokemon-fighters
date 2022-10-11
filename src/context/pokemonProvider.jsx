@@ -22,6 +22,7 @@ export default function PokemonProvider({ children }) {
           .then((data) => fire.push({
             name: data.name,
             image: data.sprites.other['official-artwork'].front_default,
+            color: 'red',
           })),
       );
     });
@@ -34,6 +35,7 @@ export default function PokemonProvider({ children }) {
           .then((data) => water.push({
             name: data.name,
             image: data.sprites.other['official-artwork'].front_default,
+            color: 'blue',
           })),
       );
     });
@@ -46,6 +48,7 @@ export default function PokemonProvider({ children }) {
           .then((data) => grass.push({
             name: data.name,
             image: data.sprites.other['official-artwork'].front_default,
+            color: 'green',
           })),
       );
     });
@@ -61,7 +64,11 @@ export default function PokemonProvider({ children }) {
     setAllStates();
   }, []);
 
-  const contextValue = useMemo(() => ({ firePokemon, waterPokemon, grassPokemon }), []);
+  useEffect(() => {}, [firePokemon, waterPokemon, grassPokemon]);
+
+  const contextValue = useMemo(() => (
+    { firePokemon, waterPokemon, grassPokemon }
+  ), [firePokemon, waterPokemon, grassPokemon]);
   return (
     <pokemonContext.Provider value={contextValue}>
       { children }
