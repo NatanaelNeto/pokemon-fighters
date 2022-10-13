@@ -10,14 +10,11 @@ export default function GameProvider({ children }) {
   const [winner, setWinner] = useState('');
 
   useEffect(() => {
-    console.log(`Jogador 1 escolheu: ${playerA.name}`);
-    console.log(`Jogador 2 escolheu: ${playerB.name}`);
   }, [playerA, playerB]);
 
   const battle = () => {
     if (playerA.color !== '' && playerB.color !== '') {
       setWinner(WIN_CONDITION[COLOR_TO_NUMBER[playerA.color]][COLOR_TO_NUMBER[playerB.color]]);
-      console.log(WIN_CONDITION[COLOR_TO_NUMBER[playerA.color]][COLOR_TO_NUMBER[playerB.color]]);
     }
   };
 

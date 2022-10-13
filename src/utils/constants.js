@@ -17,10 +17,13 @@ export const POKEMON_PROVIDER_MOCK = {
   ],
 };
 export const BAGS_LENGTH = 2;
+export const PLAYER_ONE_WIN = 'Jogador 1 venceu!';
+export const PLAYER_TWO_WIN = 'Jogador 2 venceu!';
+export const DRAW = 'Empate!';
 export const WIN_CONDITION = [
-  ['Empate', 'Jogador 2', 'Jogador 1'],
-  ['Jogador 1', 'Empate', 'Jogador 2'],
-  ['Jogador 2', 'Jogador 1', 'Empate']];
+  [DRAW, PLAYER_TWO_WIN, PLAYER_ONE_WIN],
+  [PLAYER_ONE_WIN, DRAW, PLAYER_TWO_WIN],
+  [PLAYER_TWO_WIN, PLAYER_ONE_WIN, DRAW]];
 export const COLOR_TO_NUMBER = {
   red: 0,
   blue: 1,

@@ -4,7 +4,7 @@ import Bag from './components/Bag';
 import { GameContext } from './context';
 
 function App() {
-  const { battle } = useContext(GameContext);
+  const { battle, winner } = useContext(GameContext);
   return (
     <div className="App">
       <h1>Pokémon Fighters</h1>
@@ -16,6 +16,7 @@ function App() {
       >
         Batalha!
       </button>
+      <p>{winner}</p>
     </div>
   );
 }
