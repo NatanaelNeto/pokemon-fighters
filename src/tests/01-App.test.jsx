@@ -29,7 +29,7 @@ describe('App Component tests', async () => {
 
   it('Have two bags', () => {
     render(toRender);
-    const bags = screen.getAllByRole('heading', { name: /Bag/, level: 3 });
+    const bags = screen.getAllByRole('heading', { name: /Bolsa/, level: 3 });
     expect(bags.length).toBe(BAGS_LENGTH);
   });
 
