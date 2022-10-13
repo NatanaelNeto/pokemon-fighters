@@ -6,7 +6,8 @@ function App() {
   return (
     <div className="App">
       <h1>Pokémon Fighters</h1>
-      <Bag />
+      <Bag isPlayerA />
+      <Bag isPlayerA={false} />
     </div>
   );
 }

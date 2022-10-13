@@ -8,7 +8,7 @@ export default function Card({
     <button
       type="button"
       onClick={handleClick}
-      className={`card-pokemon ${color}`}
+      className={`card-pokemon ${color}-color`}
     >
       <img src={image} alt={name} />
       <span>{name}</span>

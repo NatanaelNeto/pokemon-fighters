@@ -1,29 +1,48 @@
 import React, { useContext } from 'react';
-import { pokemonContext } from '../context';
+import PropTypes from 'prop-types';
+
+import { GameContext, PokemonContext } from '../context';
 import Card from './Card';
 
-const POKEMON_COUNT = 3;
-
-export default function Bag() {
-  const { firePokemon, waterPokemon, grassPokemon } = useContext(pokemonContext);
+export default function Bag({ isPlayerA }) {
+  const { firePokemon, waterPokemon, grassPokemon } = useContext(PokemonContext);
+  const { setPlayerA, setPlayerB } = useContext(GameContext);
 
   const pokemonSet = [];
-  pokemonSet.push(firePokemon[Math.floor(Math.random() * POKEMON_COUNT)]);
-  pokemonSet.push(waterPokemon[Math.floor(Math.random() * POKEMON_COUNT)]);
-  pokemonSet.push(grassPokemon[Math.floor(Math.random() * POKEMON_COUNT)]);
-  console.log(pokemonSet);
+  if (firePokemon) {
+    pokemonSet.push(firePokemon[isPlayerA ? 0 : 1]);
+    pokemonSet.push(waterPokemon[isPlayerA ? 0 : 1]);
+    pokemonSet.push(grassPokemon[isPlayerA ? 0 : 1]);
+  }
+
+  const handleClick = (name, color) => {
+    if (isPlayerA) {
+      setPlayerA({ name, color });
+      return;
+    }
+    setPlayerB({ name, color });
+  };
+
   return (
-    <ul>
-      { pokemonSet[0] && pokemonSet.map(({ name, image, color }) => (
-        <li>
-          <Card
-            name={name}
-            image={image}
-            color={color}
-            handleClick={() => console.log(color)}
-          />
-        </li>
-      )) }
-    </ul>
+    <div>
+      <h3>Bag</h3>
+      <ul>
+        { pokemonSet[0] && pokemonSet.map(({ name, image, color }, index) => (
+          <li key={index}>
+            <Card
+              name={name}
+              image={image}
+              color={color}
+              handleClick={() => handleClick(name, color)}
+              data-testid="pokemon-card"
+            />
+          </li>
+        )) }
+      </ul>
+    </div>
   );
 }
+
+Bag.propTypes = {
+  isPlayerA: PropTypes.bool.isRequired,
+};

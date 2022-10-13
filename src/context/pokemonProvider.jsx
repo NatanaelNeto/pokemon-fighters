@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { pokemonContext } from '.';
+import { PokemonContext } from '.';
 import { fireType, waterType, grassType } from '../utils/pokemon';
 
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
@@ -17,62 +18,71 @@ export default function PokemonProvider({ children }) {
     const fire = [];
     fireType.forEach((f) => {
       results.push(
-        fetch(`${BASE_URL}${f}`)
+        fetch(`${BASE_URL}${f.toLowerCase()}`)
           .then((response) => response.json())
           .then((data) => fire.push({
             name: data.name,
             image: data.sprites.other['official-artwork'].front_default,
             color: 'red',
-          })),
+          }))
+          .catch((error) => console.log(error)),
       );
     });
 
     const water = [];
     waterType.forEach((w) => {
       results.push(
-        fetch(`${BASE_URL}${w}`)
+        fetch(`${BASE_URL}${w.toLowerCase()}`)
           .then((response) => response.json())
           .then((data) => water.push({
             name: data.name,
             image: data.sprites.other['official-artwork'].front_default,
             color: 'blue',
-          })),
+          }))
+          .catch((error) => console.log(error)),
       );
     });
 
     const grass = [];
     grassType.forEach((g) => {
       results.push(
-        fetch(`${BASE_URL}${g}`)
+        fetch(`${BASE_URL}${g.toLowerCase()}`)
           .then((response) => response.json())
           .then((data) => grass.push({
             name: data.name,
             image: data.sprites.other['official-artwork'].front_default,
             color: 'green',
-          })),
+          }))
+          .catch((error) => console.log(error)),
       );
     });
 
     await Promise.all(results);
-
-    setFirePokemon(fire);
-    setWaterPokemon(water);
-    setGrassPokemon(grass);
+    setFirePokemon([
+      fire[Math.floor(Math.random() * fire.length)],
+      fire[Math.floor(Math.random() * fire.length)],
+    ]);
+    setWaterPokemon([
+      water[Math.floor(Math.random() * water.length)],
+      water[Math.floor(Math.random() * water.length)],
+    ]);
+    setGrassPokemon([
+      grass[Math.floor(Math.random() * grass.length)],
+      grass[Math.floor(Math.random() * grass.length)],
+    ]);
   };
 
   useEffect(() => {
     setAllStates();
   }, []);
 
-  useEffect(() => {}, [firePokemon, waterPokemon, grassPokemon]);
-
   const contextValue = useMemo(() => (
     { firePokemon, waterPokemon, grassPokemon }
   ), [firePokemon, waterPokemon, grassPokemon]);
   return (
-    <pokemonContext.Provider value={contextValue}>
+    <PokemonContext.Provider value={contextValue}>
       { children }
-    </pokemonContext.Provider>
+    </PokemonContext.Provider>
   );
 }
 

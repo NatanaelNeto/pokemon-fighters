@@ -19,5 +19,6 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
     'no-restricted-syntax': 'off',
+    'react/no-array-index-key': 'off',
   },
 };
