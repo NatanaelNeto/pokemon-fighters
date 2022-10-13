@@ -17,3 +17,12 @@ export const POKEMON_PROVIDER_MOCK = {
   ],
 };
 export const BAGS_LENGTH = 2;
+export const WIN_CONDITION = [
+  ['Empate', 'Jogador 2', 'Jogador 1'],
+  ['Jogador 1', 'Empate', 'Jogador 2'],
+  ['Jogador 2', 'Jogador 1', 'Empate']];
+export const COLOR_TO_NUMBER = {
+  red: 0,
+  blue: 1,
+  green: 2,
+};

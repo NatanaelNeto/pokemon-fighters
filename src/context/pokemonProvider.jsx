@@ -15,6 +15,7 @@ export default function PokemonProvider({ children }) {
   // Preenche o estado
   const setAllStates = async () => {
     const results = [];
+    const errors = [];
     const fire = [];
     fireType.forEach((f) => {
       results.push(
@@ -25,7 +26,7 @@ export default function PokemonProvider({ children }) {
             image: data.sprites.other['official-artwork'].front_default,
             color: 'red',
           }))
-          .catch((error) => console.log(error)),
+          .catch((error) => errors.push(error)),
       );
     });
 
@@ -39,7 +40,7 @@ export default function PokemonProvider({ children }) {
             image: data.sprites.other['official-artwork'].front_default,
             color: 'blue',
           }))
-          .catch((error) => console.log(error)),
+          .catch((error) => errors.push(error)),
       );
     });
 
@@ -53,7 +54,7 @@ export default function PokemonProvider({ children }) {
             image: data.sprites.other['official-artwork'].front_default,
             color: 'green',
           }))
-          .catch((error) => console.log(error)),
+          .catch((error) => errors.push(error)),
       );
     });
 
