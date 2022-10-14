@@ -28,20 +28,31 @@ describe('Battle tests', () => {
     const pokemon = screen.getAllByRole('button', { name: /A/ });
     const battleBtn = screen.getByRole('button', { name: /Batalha!/ });
 
+    const lockBtn = screen.getAllByRole('button', { name: 'Confirmar' });
+
+    expect(lockBtn[0]).toBeInTheDocument();
+    expect(lockBtn[1]).toBeInTheDocument();
+    
     await userEvent.click(pokemon[0]);
     await userEvent.click(pokemon[5]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(PLAYER_ONE_WIN)).toBeInTheDocument();
 
     await userEvent.click(pokemon[1]);
     await userEvent.click(pokemon[3]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(PLAYER_ONE_WIN)).toBeInTheDocument();
 
     await userEvent.click(pokemon[2]);
     await userEvent.click(pokemon[4]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(PLAYER_ONE_WIN)).toBeInTheDocument();
@@ -53,20 +64,31 @@ describe('Battle tests', () => {
     const pokemon = screen.getAllByRole('button', { name: /A/ });
     const battleBtn = screen.getByRole('button', { name: /Batalha!/ });
 
+    const lockBtn = screen.getAllByRole('button', { name: 'Confirmar' });
+
+    expect(lockBtn[0]).toBeInTheDocument();
+    expect(lockBtn[1]).toBeInTheDocument();
+
     await userEvent.click(pokemon[0]);
     await userEvent.click(pokemon[4]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(PLAYER_TWO_WIN)).toBeInTheDocument();
 
     await userEvent.click(pokemon[1]);
     await userEvent.click(pokemon[5]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(PLAYER_TWO_WIN)).toBeInTheDocument();
 
     await userEvent.click(pokemon[2]);
     await userEvent.click(pokemon[3]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(PLAYER_TWO_WIN)).toBeInTheDocument();
@@ -78,20 +100,31 @@ describe('Battle tests', () => {
     const pokemon = screen.getAllByRole('button', { name: /A/ });
     const battleBtn = screen.getByRole('button', { name: /Batalha!/ });
 
+    const lockBtn = screen.getAllByRole('button', { name: 'Confirmar' });
+
+    expect(lockBtn[0]).toBeInTheDocument();
+    expect(lockBtn[1]).toBeInTheDocument();
+
     await userEvent.click(pokemon[0]);
     await userEvent.click(pokemon[3]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(DRAW)).toBeInTheDocument();
 
     await userEvent.click(pokemon[1]);
     await userEvent.click(pokemon[4]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(DRAW)).toBeInTheDocument();
 
     await userEvent.click(pokemon[2]);
     await userEvent.click(pokemon[5]);
+    await userEvent.click(lockBtn[0]);
+    await userEvent.click(lockBtn[1]);
     await userEvent.click(battleBtn);
 
     expect(screen.getByText(DRAW)).toBeInTheDocument();

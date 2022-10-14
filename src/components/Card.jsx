@@ -11,7 +11,7 @@ export default function Card({
     <button
       type="button"
       onClick={handleClick}
-      className={`card-pokemon ${color}-color ${active}`}
+      className={`card-pokemon ${color}-color ${(confirmed && !blockA || !confirmed && !blockB) && active}`}
       disabled={ confirmed ? blockA : blockB }
     >
       <img src={image} alt={name} />

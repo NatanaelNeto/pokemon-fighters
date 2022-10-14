@@ -12,11 +12,14 @@ export default function PokemonProvider({ children }) {
   const [waterPokemon, setWaterPokemon] = useState([]);
   const [grassPokemon, setGrassPokemon] = useState([]);
 
+  const fire = [];
+  const water = [];
+  const grass = [];
+
   // Preenche o estado
   const setAllStates = async () => {
     const results = [];
     const errors = [];
-    const fire = [];
     fireType.forEach((f) => {
       results.push(
         fetch(`${BASE_URL}${f.toLowerCase()}`)
@@ -30,7 +33,6 @@ export default function PokemonProvider({ children }) {
       );
     });
 
-    const water = [];
     waterType.forEach((w) => {
       results.push(
         fetch(`${BASE_URL}${w.toLowerCase()}`)
@@ -44,7 +46,6 @@ export default function PokemonProvider({ children }) {
       );
     });
 
-    const grass = [];
     grassType.forEach((g) => {
       results.push(
         fetch(`${BASE_URL}${g.toLowerCase()}`)
@@ -59,6 +60,10 @@ export default function PokemonProvider({ children }) {
     });
 
     await Promise.all(results);
+    swapBags();
+  };
+
+  const swapBags = () => {
     setFirePokemon([
       fire[Math.floor(Math.random() * fire.length)],
       fire[Math.floor(Math.random() * fire.length)],
@@ -71,15 +76,15 @@ export default function PokemonProvider({ children }) {
       grass[Math.floor(Math.random() * grass.length)],
       grass[Math.floor(Math.random() * grass.length)],
     ]);
-  };
+  }
 
   useEffect(() => {
     setAllStates();
   }, []);
 
   const contextValue = useMemo(() => (
-    { firePokemon, waterPokemon, grassPokemon }
-  ), [firePokemon, waterPokemon, grassPokemon]);
+    { firePokemon, waterPokemon, grassPokemon, swapBags }
+  ), [firePokemon, waterPokemon, grassPokemon, swapBags]);
   return (
     <PokemonContext.Provider value={contextValue}>
       { children }

@@ -34,7 +34,6 @@ export default function Bag({ isPlayerA }) {
 
   const confirm = () => {
     const { name, color } = pokemon;
-    setActive('');
     if (isPlayerA) {
       setPlayerA({ name, color });
       setBlockA(true);
