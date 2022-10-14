@@ -10,7 +10,10 @@ function App() {
       <div className="container">
         <Bag isPlayerA />
         <div className="menu-container">
-          <h1>Pokémon Fighters</h1>
+          <h1>
+            Pokémon<br/>
+            <span>Fighters</span>
+          </h1>
           <button
             type="button"
             onClick={() => battle()}

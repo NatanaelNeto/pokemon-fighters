@@ -8,6 +8,8 @@ export default function GameProvider({ children }) {
   const [playerA, setPlayerA] = useState({ name: '', color: '' });
   const [playerB, setPlayerB] = useState({ name: '', color: '' });
   const [winner, setWinner] = useState('');
+  const [blockA, setBlockA] = useState(false);
+  const [blockB, setBlockB] = useState(false);
 
   useEffect(() => {
   }, [playerA, playerB]);
@@ -16,13 +18,16 @@ export default function GameProvider({ children }) {
     if (playerA.color !== '' && playerB.color !== '') {
       setWinner(WIN_CONDITION[COLOR_TO_NUMBER[playerA.color]][COLOR_TO_NUMBER[playerB.color]]);
     }
+
+    setBlockA(false);
+    setBlockB(false);
   };
 
   const contextValue = useMemo(() => (
     {
-      playerA, setPlayerA, playerB, setPlayerB, battle, winner,
+      playerA, setPlayerA, playerB, setPlayerB, battle, winner, blockA, setBlockA, blockB, setBlockB
     }
-  ), [playerA, setPlayerA, playerB, setPlayerB, battle, winner]);
+  ), [playerA, setPlayerA, playerB, setPlayerB, battle, winner, blockA, setBlockA, blockB, setBlockB]);
 
   return (
     <GameContext.Provider value={contextValue}>

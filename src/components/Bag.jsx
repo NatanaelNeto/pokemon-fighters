@@ -5,9 +5,19 @@ import { GameContext, PokemonContext } from '../context';
 import Card from './Card';
 
 export default function Bag({ isPlayerA }) {
-  const { firePokemon, waterPokemon, grassPokemon } = useContext(PokemonContext);
-  const { setPlayerA, setPlayerB } = useContext(GameContext);
-
+  const {
+    firePokemon,
+    waterPokemon,
+    grassPokemon,
+  } = useContext(PokemonContext);
+  const {
+    setPlayerA,
+    setPlayerB,
+    setBlockA,
+    setBlockB,
+  } = useContext(GameContext);
+  
+  const [pokemon, setPokemon] = useState({ name: '', color:'' });
   const [active, setActive] = useState('');
 
   const pokemonSet = [];
@@ -19,12 +29,20 @@ export default function Bag({ isPlayerA }) {
 
   const handleClick = (name, color) => {
     setActive(name);
+    setPokemon({name, color});
+  };
+
+  const confirm = () => {
+    const { name, color } = pokemon;
+    setActive('');
     if (isPlayerA) {
       setPlayerA({ name, color });
+      setBlockA(true);
       return;
     }
     setPlayerB({ name, color });
-  };
+    setBlockB(true);
+  }
 
   return (
     <div className="bag">
@@ -38,6 +56,7 @@ export default function Bag({ isPlayerA }) {
               color={color}
               handleClick={() => handleClick(name, color)}
               active={name === active ? `${color}-active` : ''}
+              confirmed={isPlayerA}
             />
           </li>
         )) }
@@ -45,6 +64,7 @@ export default function Bag({ isPlayerA }) {
       <button
         type="button"
         className="bag-confirm"
+        onClick={() => confirm()}
       >
         Confirmar
       </button>
