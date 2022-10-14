@@ -1,0 +1,3 @@
+export default [
+  'Charmander', 'Charmeleon', 'Charizard', 'Vulpix', 'Ninetales', 'Growlithe', 'Arcanine', 'Ponyta', 'Rapidash', 'Magmar', 'Flareon', 'Moltres', 'Cyndaquil', 'Quilava', 'Typhlosion', 'Slugma', 'Magcargo', 'Houndour', 'Houndoom', 'Magby', 'Entei', 'Ho-Oh', 'Torchic', 'Combusken', 'Blaziken', 'Numel', 'Camerupt', 'Torkoal', 'Chimchar', 'Monferno', 'Infernape', 'Magmortar', 'Heatran', 'Victini', 'Tepig', 'Pignite', 'Emboar', 'Pansear', 'Simisear', 'Darumaka', 'Darmanitan', 'Litwick', 'Lampent', 'Chandelure', 'Heatmor', 'Larvesta', 'Volcarona', 'Reshiram', 'Fennekin', 'Braixen', 'Delphox', 'Fletchinder', 'Talonflame', 'Litleo', 'Pyroar', 'Volcanion', 'Litten', 'Torracat', 'Incineroar', 'Oricorio', 'Salandit', 'Salazzle', 'Turtonator', 'Blacephalon',
+];
